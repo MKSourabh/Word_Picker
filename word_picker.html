@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Word Picker - Mobile Friendly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: sans-serif;
+      padding: 15px;
+      margin: 0;
+    }
+    textarea, button {
+      width: 100%;
+      font-size: 16px;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+    .word {
+      cursor: pointer;
+      margin: 5px 5px 5px 0;
+      padding: 8px 12px;
+      display: inline-block;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      transition: 0.2s;
+      font-size: 16px;
+      max-width: 100%;
+      word-wrap: break-word;
+    }
+    .word:hover {
+      background-color: #e0e0ff;
+    }
+    .copied::after {
+      content: "Copied!";
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: green;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+    #messageBox {
+      height: 80px;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      resize: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Paste Your Paragraph:</h2>
+  <textarea id="paragraph" rows="4" placeholder="Paste text here..."></textarea>
+  <button onclick="splitWords()">Split Words</button>
+
+  <div id="wordArea" style="margin-top: 15px;"></div>
+
+  <h3>Words Copied:</h3>
+  <textarea id="messageBox" readonly></textarea>
+
+  <script>
+    const copiedWords = [];
+
+    function splitWords() {
+      const para = document.getElementById("paragraph").value;
+      const words = para.trim().split(/\s+/);
+      const wordArea = document.getElementById("wordArea");
+      const messageBox = document.getElementById("messageBox");
+      copiedWords.length = 0;
+      messageBox.value = "";
+      wordArea.innerHTML = "";
+
+      words.forEach(word => {
+        const span = document.createElement("span");
+        span.className = "word";
+        span.textContent = word;
+
+        span.onclick = () => {
+          navigator.clipboard.writeText(word).then(() => {
+            span.classList.add("copied");
+            setTimeout(() => span.classList.remove("copied"), 1000);
+            copiedWords.push(word);
+            messageBox.value = copiedWords.join(" ");
+          });
+        };
+
+        wordArea.appendChild(span);
+      });
+    }
+  </script>
+</body>
+</html>
