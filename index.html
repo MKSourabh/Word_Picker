@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Word Picker - Mobile Friendly</title>
+  <title>Word Picker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * {
@@ -12,14 +12,42 @@
       font-family: sans-serif;
       padding: 15px;
       margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     textarea, button {
-      width: 100%;
-      font-size: 16px;
-      margin-bottom: 10px;
+      font-size: 15px;
       padding: 10px;
     }
+    textarea {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .button-row, .copy-clear-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    button {
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .split-btn {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .reset-btn {
+      background-color: #f44336;
+      color: white;
+    }
+    .grey-btn {
+      background-color: #e0e0e0;
+      color: black;
+    }
     .word {
+      position: relative;
       cursor: pointer;
       margin: 5px 5px 5px 0;
       padding: 8px 12px;
@@ -35,18 +63,22 @@
     .word:hover {
       background-color: #e0e0ff;
     }
-    .copied::after {
-      content: "Copied!";
+    .copied-popup {
       position: absolute;
-      top: -20px;
+      top: -25px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 12px;
-      color: green;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      padding: 2px 5px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 2px 6px;
       border-radius: 3px;
+      font-size: 12px;
+      pointer-events: none;
+      animation: fadeOut 1s forwards;
+    }
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
     }
     #messageBox {
       height: 80px;
@@ -55,18 +87,44 @@
       border: 2px solid #ccc;
       border-radius: 5px;
       resize: none;
+      width: 100%;
+    }
+    footer {
+      margin-top: auto;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      padding: 10px 0 10px 0;
     }
   </style>
 </head>
 <body>
-  <h2>Paste Your Paragraph:</h2>
+<h1 style="text-align: center; font-size: 22px; margin-top: 5px; margin-bottom: 5px;">
+  <strong>Word Picker</strong>
+<h2 style="text-align: center; font-size: 19px; margin-top: 5px; margin-bottom: 30px;">Pick Words, Form your Line.</h2>
+</h1>
+  <h3 style="font-size: 17px; margin-top: 5px; margin-bottom: 10px;">Paste Your Paragraph:</h3>
   <textarea id="paragraph" rows="4" placeholder="Paste text here..."></textarea>
-  <button onclick="splitWords()">Split Words</button>
+  
+  <div class="button-row">
+    <button class="grey-btn" onclick="pasteText()">Paste</button>
+    <button class="split-btn" onclick="splitWords()">Split Words</button>
+    <button class="reset-btn" onclick="resetAll()">Reset</button>
+  </div>
 
   <div id="wordArea" style="margin-top: 15px;"></div>
 
-  <h3>Words Copied:</h3>
+  <h4 style="font-size: 17px; margin-top: 5px; margin-bottom: 10px;">Words Copied:</h4>
   <textarea id="messageBox" readonly></textarea>
+
+  <div class="copy-clear-row">
+    <button class="grey-btn" onclick="copyAll()">Copy All</button>
+    <button class="grey-btn" onclick="clearCopied()">Clear</button>
+  </div>
+
+  <footer>
+    Created by Kireeti Sourabh Mangalampally
+  </footer>
 
   <script>
     const copiedWords = [];
@@ -87,15 +145,50 @@
 
         span.onclick = () => {
           navigator.clipboard.writeText(word).then(() => {
-            span.classList.add("copied");
-            setTimeout(() => span.classList.remove("copied"), 1000);
             copiedWords.push(word);
             messageBox.value = copiedWords.join(" ");
+            showPopup(span);
           });
         };
 
         wordArea.appendChild(span);
       });
+    }
+
+    function showPopup(element) {
+      const popup = document.createElement("div");
+      popup.className = "copied-popup";
+      popup.textContent = "Copied!";
+      element.appendChild(popup);
+      setTimeout(() => {
+        popup.remove();
+      }, 1000);
+    }
+
+    function pasteText() {
+      navigator.clipboard.readText().then(text => {
+        document.getElementById("paragraph").value = text;
+      }).catch(() => {
+        alert("Clipboard access denied or unavailable.");
+      });
+    }
+
+    function resetAll() {
+      document.getElementById("paragraph").value = "";
+      document.getElementById("wordArea").innerHTML = "";
+      document.getElementById("messageBox").value = "";
+      copiedWords.length = 0;
+    }
+
+    function copyAll() {
+      const messageBox = document.getElementById("messageBox");
+      navigator.clipboard.writeText(messageBox.value).then(() => {
+        alert("All copied words copied to clipboard!");
+      });
+    }
+
+    function clearCopied() {
+      document.getElementById("messageBox").value = "";
     }
   </script>
 </body>
