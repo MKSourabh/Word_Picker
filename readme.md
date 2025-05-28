@@ -2,7 +2,7 @@
 
 A simple interactive tool to pick and extract words from a sentence or paragraph with just a click. Ideal for content curation, word games, or turning raw text into a custom word list.
 
-🔗 **Live Demo**: [Word Picker Tool](https://mksourabh.github.io/Word_Picker/)
+## 🔗 **Live Demo**: [Word Picker Tool](https://mksourabh.github.io/Word_Picker/)
 
 ---
 
