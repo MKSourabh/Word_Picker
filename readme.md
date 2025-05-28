@@ -4,8 +4,6 @@ A simple interactive tool to pick and extract words from a sentence or paragraph
 
 ## 🔗 **Live Demo**: [Word Picker Tool](https://mksourabh.github.io/Word_Picker/)
 
----
-
 ## 🧠 What It Does
 
 Paste a sentence, paragraph, or block of text, and **click on any word** to move it to a new line below — building your own custom word list instantly.
