@@ -1,64 +1,62 @@
-# 🎯 Word Picker
+# ✂️ Word Picker – Interactive Word Extractor
 
-A lightweight, no-fuss tool to help you randomly pick a word from a custom list. Perfect for games, classroom activities, giveaways, brainstorming sessions, or creative decision-making.
+A simple interactive tool to pick and extract words from a sentence or paragraph with just a click. Ideal for content curation, word games, or turning raw text into a custom word list.
 
 🔗 **Live Demo**: [Word Picker Tool](https://mksourabh.github.io/Word_Picker/)
 
 ---
 
+## 🧠 What It Does
+
+Paste a sentence, paragraph, or block of text, and **click on any word** to move it to a new line below — building your own custom word list instantly.
+
+---
+
 ## ✨ Features
 
-- 🎲 Randomly picks a word from user-provided input
-- 🧾 Simple, intuitive interface — no distractions
-- 🧹 Easily reset and reuse
-- 📱 Mobile-friendly design
+- 🔘 Click-to-pick words from any input text
+- 📄 Words appear on separate lines for easy copy/paste or reuse
+- 🧼 Clear and reset buttons for quick restarts
+- ⚡ Fast, responsive, and mobile-friendly
 
 ---
 
 ## 🛠️ How to Use
 
-1. Type or paste your list of words (one per line).
-2. Click **Pick a Word**.
-3. Let the tool randomly choose one word from the list.
-4. Hit **Reset** to start over.
+1. Paste any paragraph or sentence into the input box.
+2. Click on individual words you want to extract.
+3. Selected words will appear as a list below, each on a new line.
+4. Use **Reset** to clear the list and start over.
 
 ---
 
 ## 💡 Use Cases
 
-- Classroom vocabulary games
-- Team icebreakers
-- Giveaway/raffle winner picker
-- Creative writing prompts
-- Quick brainstorming sessions
+- Content filtering and extraction
+- Keyword picking from text
+- Brainstorming tools
+- Word games or classroom exercises
+- Simplifying long paragraphs into key terms
 
 ---
 
-## 🚀 Tech Stack
+## 🚀 Built With
 
 - HTML
 - CSS
-- JavaScript
+- JavaScript (Vanilla)
 
 ---
 
-## 📌 Todo / Improvements (optional ideas)
+## 👨‍💻 Creator
 
-- Add animation when picking a word
-- Store previous picks to avoid repeats
-- Allow importing/exporting word lists
-- Dark mode toggle
-
----
-
-## 👨‍💻 Author
-
-Made with ❤️ by [@MKSourabh](https://github.com/MKSourabh)  
-📫 Contact: [kireetisourabhmangalampally@gmail.com](mailto:kireetisourabhmangalampally@gmail.com)  
+Made by [@MKSourabh](https://github.com/MKSourabh)  
+📫 Email: [kireetisourabhmangalampally@gmail.com](mailto:kireetisourabhmangalampally@gmail.com)  
 📸 Instagram: [@mk__sourabh](https://instagram.com/mk__sourabh)
 
 ---
 
 ## 📄 License
 
-This project is open-source and available under the [MIT License](LICENSE).
+This project is released under the [MIT License](LICENSE).
+
